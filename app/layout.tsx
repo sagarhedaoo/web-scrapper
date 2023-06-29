@@ -1,4 +1,6 @@
+import Sidebar from "@/components/Sidebar";
 import "./globals.css";
+import Header from "@/components/Header";
 
 export const metadata = {
   title: "Web Scrapper",
@@ -12,7 +14,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="flex bg-[#F7FBFF] h-screen ">
+        <Sidebar />
+        <main className="p-10 max-w-7xl w-full mx-auto overflow-y-auto">
+          <Header />
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
