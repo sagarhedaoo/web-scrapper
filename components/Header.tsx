@@ -1,12 +1,13 @@
 "use client";
 
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { headers } from "next/dist/client/components/headers";
 import { FormEvent, useRef } from "react";
 import React from "react";
 
 function Header() {
   const inputRef = useRef<HTMLInputElement>(null);
-  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
+  const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const input = inputRef.current?.value;
     if (!input) {
@@ -18,6 +19,13 @@ function Header() {
 
     try {
       //Call API
+      const response = await fetch("/api/activateScraper", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ search: input }),
+      });
     } catch (error) {
       //Handle Errors
     }
